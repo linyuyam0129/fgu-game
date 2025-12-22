@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>佛光大學-學權捍衛戰</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <div id="home-screen" class="screen active fade-in wide-layout">
+            <div class="layout-row">
+                
+                <div class="col-left content-card">
+                    <div class="leaderboard-section">
+                        <h3>🏆 捍衛英雄榜</h3>
+                        <div class="leaderboard-box custom-scroll">
+                            <ul id="leaderboard-list">
+                                <li>載入中...</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-center content-card">
+                    <header class="hero-header">
+                        <img src="images/logo_icon.png" class="logo-main" alt="FGUSA Logo">
+                        
+                        <h1>佛大・學權捍衛戰</h1>
+                        <p class="subtitle">你的權益，由你點擊！<br>找出不合理的校園現象！</p>
+                    </header>
+
+                    <div class="rules-container">
+                        <div class="rule-item">
+                            <span class="badge bad">打擊</span>
+                            <span class="rule-text">看到 <b>壞事</b> 用力點 (+分)</span>
+                        </div>
+                        <div class="rule-item">
+                            <span class="badge good">放過</span>
+                            <span class="rule-text">看到 <b>好事</b> 請保留 (-分)</span>
+                        </div>
+                        <div class="rule-item">
+                            <span class="badge time">限時</span>
+                            <span class="rule-text">挑戰 <b>30秒</b> 最高分</span>
+                        </div>
+                    </div>
+
+                    <div class="action-area">
+                        <button class="btn-primary pulse-anim" onclick="startGame()">立即開始捍衛！</button>
+                    </div>
+
+                    <img src="images/logo_banner.png" class="logo-footer" alt="FGUSA Banner">
+                </div>
+
+                <div class="col-right content-card">
+                    <div class="qrcode-section">
+                        <p class="qr-title">關注我們<br>掌握權益</p>
+                        <div class="qrcode-vertical">
+                            <div class="qr-box">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.instagram.com/fgusa_24th?igsh=MTdtMGV2eHNqOWtyeg==&color=2a9d8f" alt="IG">
+                                <p>學生會 IG</p>
+                            </div>
+                            <div class="qr-box">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://u.lin.ee/B9koOgy&color=2a9d8f" alt="LINE">
+                                <p>學生會 LINE</p>
+                            </div>
+                            <div class="qr-box">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=FGU_SA_RIGHTS_FORM&color=e76f51" alt="學權問題反映區">
+                                <p>學權問題反映區</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> </div>
+
+        <div id="result-screen" class="screen card fade-in">
+            <div class="result-header">
+                <h2>遊戲結束！</h2>
+                <p>你的學權意識指數</p>
+            </div>
+            <h1 id="final-score" class="score-pop">0</h1>
+            <p id="player-id-display">玩家代號: ---</p>
+            
+            <div class="rating-section">
+                <p>給個星吧！</p>
+                <div class="stars" id="star-container">
+                    <span data-value="1">★</span>
+                    <span data-value="2">★</span>
+                    <span data-value="3">★</span>
+                    <span data-value="4">★</span>
+                    <span data-value="5">★</span> 
+                </div>
+            </div>
+
+            <button class="btn-primary" onclick="submitAndHome()">送出成績並返回</button>
+        </div>
+    </div>
+
+    <div id="game-screen" class="full-screen-game">
+        <div class="game-ui-bar">
+            <div class="ui-box score-box">分數: <b id="score">0</b></div>
+            <div class="ui-box time-box">時間: <b id="time">30</b>s</div>
+        </div>
+        <div id="game-area"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

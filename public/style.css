@@ -1,0 +1,231 @@
+/* ================= 全域變數 ================= */
+:root {
+    --primary-color: #2a9d8f; /* 佛光深綠/藍 */
+    --accent-color: #e76f51;  /* 活力橘 */
+    --bg-gradient: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 100%);
+    --card-bg: #ffffff;
+    --text-dark: #2c3e50;
+    --shadow-md: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+body {
+    font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-dark);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    overflow-x: hidden;
+}
+
+.main-container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 20px auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* ================= 畫面切換控制 ================= */
+.screen { display: none; }
+.screen.active { display: block; }
+.fade-in { animation: fadeIn 0.4s ease-out; }
+
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(10px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+/* ================= 三欄卡片佈局 (首頁) ================= */
+.screen.wide-layout {
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+}
+
+.layout-row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; /* 讓卡片高度自動對齊 */
+    justify-content: center;
+    gap: 25px;
+}
+
+/* 獨立卡片通用樣式 */
+.content-card {
+    background: var(--card-bg);
+    border-radius: 24px;
+    box-shadow: var(--shadow-md);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 480px; /* 加高以容納新圖片 */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+.content-card:hover { transform: translateY(-5px); }
+
+/* --- 左欄：排行榜 --- */
+.col-left { flex: 1; min-width: 260px; }
+.leaderboard-section { width: 100%; height: 100%; display: flex; flex-direction: column; }
+.leaderboard-section h3 { margin-top: 0; color: var(--primary-color); text-align: center; }
+.leaderboard-box {
+    flex: 1;
+    background: #f8f9fa;
+    border-radius: 15px;
+    border: 1px solid #edf2f7;
+    padding: 10px;
+    overflow-y: auto;
+    height: 300px;
+}
+/* 捲軸美化 */
+.custom-scroll::-webkit-scrollbar { width: 6px; }
+.custom-scroll::-webkit-scrollbar-thumb { background-color: #cbd5e0; border-radius: 3px; }
+ul { padding: 0; list-style: none; margin: 0; }
+li { padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; font-size: 14px; }
+li:nth-child(1) { color: #d69e2e; font-weight: bold; } 
+li:nth-child(2) { color: #718096; font-weight: bold; } 
+li:nth-child(3) { color: #dd6b20; font-weight: bold; } 
+
+/* --- 中欄：主視覺 --- */
+.col-center { flex: 1.4; min-width: 340px; text-align: center; position: relative; z-index: 5; }
+
+/* 替換原本盾牌的 Logo 樣式 */
+.logo-main {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 12px;
+}
+
+.hero-header h1 { color: var(--primary-color); font-size: 32px; margin: 5px 0 10px 0; }
+.subtitle { color: #666; line-height: 1.5; margin-bottom: 20px; font-size: 15px; }
+
+/* 遊戲規則區塊 */
+.rules-container {
+    background: #f8f9fa;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    text-align: left;
+    width: 90%;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+}
+.rule-item { display: flex; align-items: center; margin-bottom: 8px; font-size: 15px; color: #555; }
+.rule-item:last-child { margin-bottom: 0; }
+.badge {
+    font-size: 12px; color: white; padding: 3px 8px; border-radius: 4px;
+    margin-right: 10px; font-weight: bold; min-width: 32px; text-align: center;
+}
+.badge.bad { background-color: #e53935; }
+.badge.good { background-color: #43a047; }
+.badge.time { background-color: #f6ad55; }
+.rule-text b { color: #2c3e50; font-weight: 800; }
+
+/* 替換底部文字的 Banner Logo */
+.logo-footer {
+    width: 180px;
+    max-width: 80%;
+    height: auto;
+    margin-top: 25px;
+    opacity: 0.9;
+}
+
+/* --- 右欄：QR Code --- */
+.col-right { flex: 0.8; min-width: 200px; }
+.qrcode-section { text-align: center; width: 100%; }
+.qr-title { font-weight: bold; color: #555; margin-bottom: 20px; }
+.qrcode-vertical { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+.qr-box { background: white; padding: 8px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); width: 100px; }
+.qr-box img { width: 100%; display: block; }
+.qr-box p { font-size: 12px; margin: 5px 0 0 0; color: var(--accent-color); font-weight: bold; } 
+/* 這裡統一用橘色字，或依需求改成 var(--primary-color) */
+
+/* ================= 按鈕 ================= */
+/* 按鈕外層容器：確保水平置中 */
+.action-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--accent-color), #f4a261);
+    color: white; border: none; padding: 18px 40px; font-size: 20px; font-weight: bold;
+    border-radius: 50px; cursor: pointer; 
+    box-shadow: 0 4px 15px rgba(231, 111, 81, 0.4);
+    transition: 0.2s; white-space: nowrap; 
+    
+    /* 雙重保險置中 */
+    width: 80%;
+    margin: 0 auto;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(231, 111, 81, 0.5); }
+
+/* 按鈕動畫修正版 (只閃爍陰影，不改變大小，避免跑版) */
+.pulse-anim { animation: shadow-breath 1.5s infinite ease-in-out; }
+@keyframes shadow-breath { 
+    0% { box-shadow: 0 4px 15px rgba(231, 111, 81, 0.4); }
+    50% { box-shadow: 0 4px 30px rgba(231, 111, 81, 0.9); }
+    100% { box-shadow: 0 4px 15px rgba(231, 111, 81, 0.4); } 
+}
+
+/* ================= 結算畫面 (置中彈窗) ================= */
+.screen.card {
+    background: var(--card-bg); padding: 40px; border-radius: 24px; box-shadow: var(--shadow-md);
+    text-align: center; max-width: 480px; width: 90%; margin: 0 auto;
+}
+.score-pop { font-size: 70px; color: var(--accent-color); margin: 10px 0; font-weight: 800; }
+.stars { font-size: 40px; color: #e2e8f0; cursor: pointer; margin-bottom: 20px; }
+.stars span.selected { color: #f6ad55; }
+#player-id-display { background: #f0f0f0; padding: 5px 15px; border-radius: 20px; color: #777; display: inline-block; font-size: 14px; }
+
+/* ================= 遊戲區 (全螢幕) ================= */
+.full-screen-game {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-gradient); z-index: 100;
+}
+.full-screen-game.active { display: block; }
+.game-ui-bar {
+    position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 20px; z-index: 101;
+}
+.ui-box {
+    background: rgba(255,255,255,0.95); padding: 8px 25px; border-radius: 30px; font-size: 20px; font-weight: bold;
+    color: var(--primary-color); border: 3px solid var(--primary-color); box-shadow: var(--shadow-md);
+}
+.ui-box.time-box { border-color: var(--accent-color); color: var(--accent-color); }
+
+.target-mole {
+    position: absolute; width: 100px; height: 100px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; text-align: center; font-weight: bold; color: white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2); font-size: 16px; border: 4px solid rgba(255,255,255,0.4);
+    animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; white-space: pre-wrap; user-select: none;
+}
+@keyframes popUp { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.target-mole.bad { background: linear-gradient(135deg, #e53935, #c62828); }
+.target-mole.good { background: linear-gradient(135deg, #43a047, #2e7d32); }
+.target-mole.hit { transform: scale(0.9); opacity: 0.5; background: #555 !important; }
+
+/* ================= RWD 手機版適配 ================= */
+@media (max-width: 900px) {
+    .main-container { width: 92%; margin: 10px auto; }
+    .layout-row { flex-direction: column; gap: 20px; align-items: center; }
+    .content-card { width: 100%; min-height: auto; padding: 25px 20px; box-sizing: border-box; }
+    
+    /* 手機版順序調整：主視覺 -> 排行榜 -> QR */
+    .col-center { order: 1; }
+    .col-left { order: 2; }
+    .col-right { order: 3; }
+    
+    .leaderboard-box { height: 250px; }
+    .qrcode-vertical { flex-direction: row; justify-content: center; }
+    .rules-container { width: 100%; }
+}
