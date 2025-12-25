@@ -228,4 +228,21 @@ li:nth-child(3) { color: #dd6b20; font-weight: bold; }
     .leaderboard-box { height: 250px; }
     .qrcode-vertical { flex-direction: row; justify-content: center; }
     .rules-container { width: 100%; }
+
+    /* 手機版遊戲介面 */
+    .game-ui-bar {
+        width: 95%;
+        gap: 10px;
+        top: 15px;
+    }
+
+    .ui-box {
+        font-size: 16px;
+        padding: 5px 15px;
+        min-width: auto;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        white-space: nowrap;
+    }
 }
